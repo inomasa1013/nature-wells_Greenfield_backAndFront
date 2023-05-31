@@ -1,15 +1,27 @@
 const express = require("express");
+const cors = require('cors')
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 const productsController = require("./src/product.controller");
 const productsModels = require("./src/product.models");
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(cors());
+
 app.get("/table", async (req, res) => {
+  res.set({ 'Access-Control-Allow-Origin': '*' });
   res.json(await productsController.getAll());
 });
 
-app.patch("/table", (req, res) => {
-  productsModels.update();
+app.patch("/table/:id", async (req, res) => {
+  console.log("==========", req.body);
+  await productsModels.update(req.body.id, req.body.comment);
+  res.json(await productsController.getAll());
 });
 
 app.listen(PORT, async () => {
