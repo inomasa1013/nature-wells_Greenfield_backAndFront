@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import "./styles/style.css";
 import { TableField } from "./components/TableField";
 
 function App() {
