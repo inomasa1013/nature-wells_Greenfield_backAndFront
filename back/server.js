@@ -8,11 +8,6 @@ app.get("/table", async (req, res) => {
   res.json(await productsController.getAll());
 });
 
-app.param("/table"),
-  async (req, res) => {
-    req.param(req.body);
-  };
-
 app.listen(PORT, async () => {
   console.log(await productsController.getAll());
   console.log(`Server listening on port ${PORT}`);
