@@ -18,7 +18,7 @@ module.exports = {
    * @param {number} 変更するデータのidを引数として受け取る
    * @param {string} 変更するデータ（コメント）を受けとる
    */
-  async update(id, comment, status) {
+  async update(id, comment, status = false) {
     knex(PRODUCT_TABLE)
       .where("id", "=", id)
       .update({ comment: comment, isWaiting: status })
