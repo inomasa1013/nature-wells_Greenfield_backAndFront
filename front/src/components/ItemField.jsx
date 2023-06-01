@@ -22,36 +22,40 @@ export const ItemField =(props)=>{
             setItems(data)
         })
     }, [])
-    const label = "部屋番号・氏名・連絡先を入力し、譲渡依頼してください"
+    const label = "部屋番号・氏名・今日の日付を入力し、譲渡依頼してください"
     const clickAction = (e) =>{
         const id = e.target.id;
+        const comment = document.getElementById(`input${id}`).value;
+        const body = {"id": id, "comment": comment};
         console.log(id);
-        const comment = document.getElementById(`input${id}`).value
         console.log(comment);
+        // https://postsrc.com/code-snippets/how-to-make-patch-request-with-fetch-api
         fetch(`${URL}/${id}`, {
             method: "PATCH",
-            body:{"id": id, "comment": comment},
+            body: JSON.stringify(body),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
-              },
-        }).then((response) => console.log(response.body))
-        // .then(window.location.reload());
+                },
+        }).then((response) => {
+            console.log("try");
+            console.log(response.body)})
+        .then(window.location.reload());
     }
     const itemView = () => {
         const elementsArr = [];
         items.forEach((item, index) => {
             elementsArr.push(
-                <tr>
+            <tr className={item.isWaiting? "waiting": "done"}>
                 <td className={className1}>{item.id}</td>
                 <td className={className2}>{item.item}</td>
                 <td className={className3}>{item.itemExp}</td>
-                <td className={className4}>{item.isWaiting? "譲渡可" : "新しい持ち主のもとへ旅立ちました ノシ"}<br/>{item.is_waiting? "" : item.comment}</td>
-                {item.isWaiting && <td className={className5}>
+                <td className={className4}>{item.isWaiting? "譲渡可" : "新しい持ち主のもとへ旅立ちました ﾉｼ"}<br/>{item.is_waiting? "" : item.comment}</td>
+                <td className={className5}>
                     {/* <button id={item.id} onClick={clickAction}>譲渡依頼</button> */}
-                    <label>{label}</label><br/>
+                    {item.isWaiting &&  <><label>{label}</label><br/>
                     <input ref={ref} id={`input${item.id}`} className="comment" type="text" placeholder="※改行不可" required></input>
-                    <button id={item.id} onClick={clickAction}>譲渡依頼</button>
-                </td>}
+                    <button id={item.id} onClick={clickAction}>譲渡依頼</button></>}
+                </td>
                 </tr>
             )
         })

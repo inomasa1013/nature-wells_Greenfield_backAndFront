@@ -29,7 +29,7 @@ exports.seed = async function (knex) {
       isWaiting: false,
       seller: "木村",
       comment:
-        "とても良いアイロン有難うございました。新品同様でとても気に入りました。大切に使わせていただきます。",
+        "",
     },
     {
       id: 4,
@@ -70,7 +70,7 @@ exports.seed = async function (knex) {
       isWaiting: false,
       seller: "森　洋平",
       comment:
-        "５００００円で購入していただきました/n/¥廃棄代金が浮いたので大助かりです！",
+        "５００００円で購入しました。廃棄代金が浮いたので大助かりです！",
     },
   ]);
 };

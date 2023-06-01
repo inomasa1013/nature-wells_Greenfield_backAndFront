@@ -4,6 +4,7 @@
 table{
     margin: auto;
     border-collapse: collapse; /* 隣接するセルの罫線を重ねて表示する */
+    width: 95%;
 }
 
 .itemId {
@@ -60,4 +61,8 @@ td{
 
 .comment {
     height: 60px;
+}
+
+.done{
+    background-color: grey;
 }
