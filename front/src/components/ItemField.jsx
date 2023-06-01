@@ -45,17 +45,17 @@ export const ItemField =(props)=>{
         const elementsArr = [];
         items.forEach((item, index) => {
             elementsArr.push(
-                <tr>
+            <tr className={item.isWaiting? "waiting": "done"}>
                 <td className={className1}>{item.id}</td>
                 <td className={className2}>{item.item}</td>
                 <td className={className3}>{item.itemExp}</td>
                 <td className={className4}>{item.isWaiting? "譲渡可" : "新しい持ち主のもとへ旅立ちました ﾉｼ"}<br/>{item.is_waiting? "" : item.comment}</td>
-                {item.isWaiting && <td className={className5}>
+                <td className={className5}>
                     {/* <button id={item.id} onClick={clickAction}>譲渡依頼</button> */}
-                    <label>{label}</label><br/>
+                    {item.isWaiting &&  <><label>{label}</label><br/>
                     <input ref={ref} id={`input${item.id}`} className="comment" type="text" placeholder="※改行不可" required></input>
-                    <button id={item.id} onClick={clickAction}>譲渡依頼</button>
-                </td>}
+                    <button id={item.id} onClick={clickAction}>譲渡依頼</button></>}
+                </td>
                 </tr>
             )
         })

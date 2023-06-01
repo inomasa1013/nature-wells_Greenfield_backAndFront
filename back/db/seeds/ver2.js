@@ -70,7 +70,7 @@ exports.seed = async function (knex) {
       isWaiting: false,
       seller: "森　洋平",
       comment:
-        "５００００円で購入していただきました/n/¥廃棄代金が浮いたので大助かりです！",
+        "５００００円で購入しました。廃棄代金が浮いたので大助かりです！",
     },
   ]);
 };
